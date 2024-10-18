@@ -1,0 +1,1 @@
+module.exports.youModelRepository = require('./yourModel.js')

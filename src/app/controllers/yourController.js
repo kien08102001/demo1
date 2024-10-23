@@ -83,7 +83,7 @@ class YourController {
             res.status(500).json({ error: 'Error retrieving data' });
         }
     }
-    // [DELÊT] /course/:id
+    // [DELETE] /course/:id
 
     static async destroy(req, res) {
         const { id } = req.params;
@@ -98,6 +98,38 @@ class YourController {
             }
         } catch (error) {
             res.status(500).json({ error: 'Error retrieving data' });
+        }
+    }
+
+    //[POST] /course/handle-form-actions
+    static async handleFormActions(req, res) {
+        // const { id } = req.params;
+        // const updatedData = req.body;
+        // try {
+        //     switch (updatedData.action) {
+        //         case 'delete':
+        //             const result = await youModelRepository.drop(id, updatedData);
+        //             if (result) {
+        //                 return res.redirect('back');
+        //             } else {
+        //                 return res.status(500).json({ message: 'Không thể lấy ID bản ghi' });
+        //             };
+        //             break;
+        //         default:
+        //             return res.status(400).json({ message: 'Hành động không hợp lệ' });
+        //     }
+        // } catch (err) {
+        //     console.error(err)
+        //     res.status(500).json({ error: 'Error retrieving data' });
+        // }
+        const { id } = req.params;
+
+        try {
+            const data = await youModelRepository.getBySlug(id);
+            console.log(1)
+            res.json(data);
+        } catch (error) {
+            next(error);
         }
     }
 }

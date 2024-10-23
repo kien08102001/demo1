@@ -51,7 +51,7 @@ const update = async (id, data) => {
 
 const drop = async (id, data) => {
     try {
-        const result = await db('KhoaHoc').where('id', id).delete(data);
+        const result = await db('KhoaHoc').whereIn('id', id).del(data);
         return result;
     } catch (error) {
         console.log(error);
